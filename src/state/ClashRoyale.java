@@ -16,21 +16,22 @@ import java.util.ArrayList;
 
 public class ClashRoyale {
     private RenderWindow window;
-    private int window_width = 1000;
-    private int window_height = 500;
+    private int window_width = 1280;
+    private int window_height = 720;
     private Vector2f mousepos;
     public Arena arena = new Arena();
     private Troops current_troops = null;
     private boolean CanDrop = false;
+    private boolean mousePressed = false;
     public ArrayList<Entity> entities = new ArrayList<>();
     private RectangleShape rectangleShape = new RectangleShape(new Vector2f(100,100));
 
     public static float dt;
     public ClashRoyale()
     {
-        window = new RenderWindow(new VideoMode(window_width,window_height), "state.ClashRoyale");
+        window = new RenderWindow(new VideoMode(window_width,window_height), "ClashRoyale");
         Timer.clock.restart();
-        rectangleShape.setPosition(180, 400);
+        rectangleShape.setPosition(550, 400);
         window.setFramerateLimit(30);
     }
     public void run()
@@ -54,13 +55,17 @@ public class ClashRoyale {
             if(Mouse.isButtonPressed(Mouse.Button.LEFT))
             {
                 current_troops = Troops.LOG;
+                mousePressed = true;
             }
         }
-        if(!Mouse.isButtonPressed(Mouse.Button.LEFT))
+        if(!Mouse.isButtonPressed(Mouse.Button.LEFT) && mousePressed)
         {
             CanDrop = true;
+            mousePressed = false;
         }
         PlaceCard();
+
+        entities.removeIf(Entity::isDead);
 
     }
     private void pullEvent()

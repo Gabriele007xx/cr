@@ -15,10 +15,10 @@ public class Arena {
     private void initializeArenaTiles()
     {
         boolean Dark=false;
-      for(int i=0;i<=10;i++)
+      for(int i=0;i<=18;i++)
       {
           tiles_arena.add(new ArrayList<Tile>());
-          for(int j=0;j<=10;j++)
+          for(int j=0;j<=32;j++)
           {
               Tile tile = new Tile();
               tile.getShape().setSize(new Vector2f(Tile.TILE_SIZE, Tile.TILE_SIZE));

@@ -5,6 +5,7 @@ import org.jsfml.graphics.RenderTarget;
 import org.jsfml.graphics.Shape;
 
 public abstract class Entity {
+    protected boolean dead = false;
     protected MoveComponent moveComponent;
     public void tick()
     {
@@ -16,4 +17,8 @@ public abstract class Entity {
 
     }
     public abstract Shape getSprite();
+
+    public boolean isDead() {
+        return dead;
+    }
 }
