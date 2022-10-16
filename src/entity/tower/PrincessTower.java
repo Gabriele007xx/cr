@@ -8,8 +8,8 @@ import org.jsfml.graphics.Shape;
 import util.DamageSource;
 
 public class PrincessTower extends AbstractTower{
-    public static final Vec2 RedPrincessTower1Pos = new Vec2(3.5f* Tile.TILE_SIZE,6.5f*Tile.TILE_SIZE);
-    public static final Vec2 RedPrincessTower2Pos = new Vec2(14.5f*Tile.TILE_SIZE,6.5f*Tile.TILE_SIZE);
+    public static final Vec2 RedPrincessTower1Pos = new Vec2(4f* Tile.TILE_SIZE,6.5f*Tile.TILE_SIZE);
+    public static final Vec2 RedPrincessTower2Pos = new Vec2(15f*Tile.TILE_SIZE,6.5f*Tile.TILE_SIZE);
     public PrincessTower(Vec2 pos)
     {
         radius = 1.0f * Tile.TILE_SIZE;

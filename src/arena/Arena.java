@@ -62,6 +62,18 @@ public class Arena {
                       Dark = true;
                   }
               }
+              else if((j==14 || j== 17) && (i == 1 || i == 18))
+              {
+                  tile.getShape().setFillColor(Color.RED);
+                  if(Dark)
+                  {
+                      Dark = false;
+                  }
+                  else
+                  {
+                      Dark = true;
+                  }
+              }
               //Disegna il taglio inferiore
              else if(j == 32 && ((i >= 0 && i <=6) || (i>= 13 && i<= 18)))
               {
