@@ -7,8 +7,10 @@ import entity.Troops;
 import entity.spell.Log;
 import entity.tower.KingTower;
 import entity.tower.PrincessTower;
+import org.jsfml.graphics.Color;
 import org.jsfml.graphics.RectangleShape;
 import org.jsfml.graphics.RenderWindow;
+import org.jsfml.system.Clock;
 import org.jsfml.system.Vector2f;
 import org.jsfml.window.Mouse;
 import org.jsfml.window.VideoMode;
@@ -26,7 +28,13 @@ public class ClashRoyale {
     private boolean CanDrop = false;
     private boolean mousePressed = false;
     public ArrayList<Entity> entities = new ArrayList<>();
+    private float elixir;
+    public float elixir_generation = 1;
+    private float starting_elixir=5;
+    private RectangleShape elixirbar = new RectangleShape();
+    private RectangleShape current_elixir = new RectangleShape();
     private RectangleShape rectangleShape = new RectangleShape(new Vector2f(100,100));
+    private Clock elixir_time = new Clock();
 
     public static float dt;
     public ClashRoyale()
@@ -36,6 +44,12 @@ public class ClashRoyale {
         rectangleShape.setPosition(550, 400);
         window.setFramerateLimit(30);
         initTowers();
+        elixirbar.setSize(new Vector2f(100f,20f));
+        elixirbar.setFillColor(Color.WHITE);
+        current_elixir.setFillColor(Color.MAGENTA);
+        elixirbar.setPosition(new Vector2f(0,window_height - 20));
+        current_elixir.setPosition(elixirbar.getPosition());
+
     }
     public void run()
     {
@@ -47,6 +61,12 @@ public class ClashRoyale {
     }
     private void update()
     {
+        if(elixir_time.getElapsedTime().asSeconds() >= 0.24f/elixir_generation && elixir < 10)
+        {
+            elixir_time.restart();
+            elixir = elixir + 0.1f;
+        }
+        current_elixir.setSize(new Vector2f(elixir*10f, 20f));
         mousepos = this.window.mapPixelToCoords(Mouse.getPosition(window));
         pullEvent();
             for(Entity e : entities)
@@ -93,6 +113,8 @@ public class ClashRoyale {
             e.render(window);
         }
         window.draw(rectangleShape);
+        window.draw(elixirbar);
+        window.draw(current_elixir);
         window.display();
     }
 
