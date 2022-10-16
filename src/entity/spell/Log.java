@@ -10,8 +10,9 @@ import org.jsfml.graphics.RenderTarget;
 import org.jsfml.graphics.Shape;
 import org.jsfml.system.Vector2f;
 import state.ClashRoyale;
+import util.DamageSource;
 
-public class Log extends Entity {
+public class Log extends Spell {
     private static final  float LOG_WIDTH = 3.9f;
     private static final float LOG_HEIGHT = 1.2f;
     private Vec2 spawn_positon;
@@ -21,6 +22,7 @@ public class Log extends Entity {
         shape.setOrigin(LOG_WIDTH/2f,LOG_HEIGHT/2f);
         shape.setFillColor(Color.BLUE);
         moveComponent = new MoveComponent(5f,0.1f,0.3f,this);
+        damage = 290;
     }
     @Override
     public void tick() {
@@ -59,5 +61,20 @@ public class Log extends Entity {
     @Override
     public Shape getSprite() {
         return shape;
+    }
+
+    @Override
+    public String toString() {
+        return "The Log";
+    }
+
+    @Override
+    public boolean hurt(int damage, DamageSource source) {
+        return false;
+    }
+
+    @Override
+    public DamageSource attack() {
+        return DamageSource.LOG;
     }
 }

@@ -9,6 +9,7 @@ public abstract class AbstractTower extends Entity {
     protected float radius;
     protected float HitSpeed;
 
+
     public AbstractTower()
     {
 
@@ -21,4 +22,7 @@ public abstract class AbstractTower extends Entity {
     {
 
     }
+
+
+
 }

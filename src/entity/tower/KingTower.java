@@ -5,6 +5,7 @@ import core.Vec2;
 import org.jsfml.graphics.CircleShape;
 import org.jsfml.graphics.Color;
 import org.jsfml.graphics.Shape;
+import util.DamageSource;
 
 public class KingTower extends AbstractTower{
     public static final Vec2 RedPosition = new Vec2(9* Tile.TILE_SIZE, 3 * Tile.TILE_SIZE);
@@ -28,5 +29,15 @@ public class KingTower extends AbstractTower{
     @Override
     public Shape getSprite() {
         return shape;
+    }
+
+    @Override
+    public DamageSource attack() {
+        return DamageSource.PROJECTILE;
+    }
+
+    @Override
+    public String toString() {
+        return "King Tower";
     }
 }

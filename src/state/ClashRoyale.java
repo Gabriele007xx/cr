@@ -138,8 +138,12 @@ public class ClashRoyale {
             {
                 if(e != entities.get(i) && e.getSprite().getGlobalBounds().contains(entities.get(i).getSprite().getPosition()))
                 {
-                    System.out.println("Collisione");
+                   if( e.hurt(entities.get(i).getDamage(), entities.get(i).attack())) {
+
+                       System.out.println("Collisione tra " + e.toString() + " e " + entities.get(i).toString() + " per " + entities.get(i).getDamage() + " di danno ");
+                   }
                 }
+
             }
         }
     }
