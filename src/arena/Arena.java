@@ -22,7 +22,31 @@ public class Arena {
           {
               Tile tile = new Tile();
               tile.getShape().setSize(new Vector2f(Tile.TILE_SIZE, Tile.TILE_SIZE));
-              if(j == 0 && ((i >= 0 && i <=7) || (i>= 12 && i<= 18)))
+              if(j == 0 && ((i >= 0 && i <=6) || (i>= 12 && i<= 18)))
+              {
+                  tile.getShape().setFillColor(Color.RED);
+                  if(Dark)
+                  {
+                      Dark = false;
+                  }
+                  else
+                  {
+                      Dark = true;
+                  }
+              }
+              else if((j == 15 || j == 16) && ((i >= 0 && i <=2) || (i>= 4 && i<= 14) || (i >= 16 && i <= 18)))
+              {
+                  tile.getShape().setFillColor(Color.BLUE);
+                  if(Dark)
+                  {
+                      Dark = false;
+                  }
+                  else
+                  {
+                      Dark = true;
+                  }
+              }
+             else if(j == 32 && ((i >= 0 && i <=6) || (i>= 12 && i<= 18)))
               {
                   tile.getShape().setFillColor(Color.RED);
                   if(Dark)
