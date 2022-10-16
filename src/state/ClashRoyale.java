@@ -5,7 +5,6 @@ import core.Timer;
 import entity.Entity;
 import entity.Troops;
 import entity.spell.Log;
-import entity.tower.AbstractTower;
 import entity.tower.KingTower;
 import entity.tower.PrincessTower;
 import org.jsfml.graphics.RectangleShape;
@@ -27,7 +26,6 @@ public class ClashRoyale {
     private boolean CanDrop = false;
     private boolean mousePressed = false;
     public ArrayList<Entity> entities = new ArrayList<>();
-    public ArrayList<AbstractTower> towers = new ArrayList<>();
     private RectangleShape rectangleShape = new RectangleShape(new Vector2f(100,100));
 
     public static float dt;
@@ -51,14 +49,11 @@ public class ClashRoyale {
     {
         mousepos = this.window.mapPixelToCoords(Mouse.getPosition(window));
         pullEvent();
-        for(AbstractTower t : towers)
-        {
-            t.tick();
-        }
             for(Entity e : entities)
             {
                 e.tick();
             }
+        checkForCollision();
         if(rectangleShape.getGlobalBounds().contains(mousepos))
         {
             if(Mouse.isButtonPressed(Mouse.Button.LEFT))
@@ -93,10 +88,6 @@ public class ClashRoyale {
     {
         window.clear();
         arena.render(window);
-        for(AbstractTower t : towers)
-        {
-            t.render(window);
-        }
         for(Entity e : entities)
         {
             e.render(window);
@@ -132,11 +123,24 @@ public class ClashRoyale {
     private void initTowers()
     {
         KingTower redTower = new KingTower(KingTower.RedPosition);
-        towers.add(redTower);
+        entities.add(redTower);
         PrincessTower princessTower1 = new PrincessTower(PrincessTower.RedPrincessTower1Pos);
-        towers.add(princessTower1);
+        entities.add(princessTower1);
         PrincessTower princessTower2 = new PrincessTower(PrincessTower.RedPrincessTower2Pos);
-        towers.add(princessTower2);
+        entities.add(princessTower2);
 
+    }
+    private void checkForCollision()
+    {
+        for(int i=0;i< entities.size();i++)
+        {
+            for(Entity e : entities)
+            {
+                if(e != entities.get(i) && e.getSprite().getGlobalBounds().contains(entities.get(i).getSprite().getPosition()))
+                {
+                    System.out.println("Collisione");
+                }
+            }
+        }
     }
 }

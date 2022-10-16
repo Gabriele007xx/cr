@@ -4,6 +4,7 @@ import arena.Tile;
 import core.Vec2;
 import org.jsfml.graphics.CircleShape;
 import org.jsfml.graphics.Color;
+import org.jsfml.graphics.Shape;
 
 public class KingTower extends AbstractTower{
     public static final Vec2 RedPosition = new Vec2(9* Tile.TILE_SIZE, 3 * Tile.TILE_SIZE);
@@ -22,5 +23,10 @@ public class KingTower extends AbstractTower{
     public void tick() {
         super.tick();
 
+    }
+
+    @Override
+    public Shape getSprite() {
+        return shape;
     }
 }

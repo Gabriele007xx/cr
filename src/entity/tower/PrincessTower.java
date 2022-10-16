@@ -4,6 +4,7 @@ import arena.Tile;
 import core.Vec2;
 import org.jsfml.graphics.CircleShape;
 import org.jsfml.graphics.Color;
+import org.jsfml.graphics.Shape;
 
 public class PrincessTower extends AbstractTower{
     public static final Vec2 RedPrincessTower1Pos = new Vec2(3.5f* Tile.TILE_SIZE,6.5f*Tile.TILE_SIZE);
@@ -22,5 +23,10 @@ public class PrincessTower extends AbstractTower{
     @Override
     public void tick() {
         super.tick();
+    }
+
+    @Override
+    public Shape getSprite() {
+        return shape;
     }
 }
