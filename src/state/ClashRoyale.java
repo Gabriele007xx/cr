@@ -5,6 +5,9 @@ import core.Timer;
 import entity.Entity;
 import entity.Troops;
 import entity.spell.Log;
+import entity.tower.AbstractTower;
+import entity.tower.KingTower;
+import entity.tower.PrincessTower;
 import org.jsfml.graphics.RectangleShape;
 import org.jsfml.graphics.RenderWindow;
 import org.jsfml.system.Vector2f;
@@ -24,6 +27,7 @@ public class ClashRoyale {
     private boolean CanDrop = false;
     private boolean mousePressed = false;
     public ArrayList<Entity> entities = new ArrayList<>();
+    public ArrayList<AbstractTower> towers = new ArrayList<>();
     private RectangleShape rectangleShape = new RectangleShape(new Vector2f(100,100));
 
     public static float dt;
@@ -33,6 +37,7 @@ public class ClashRoyale {
         Timer.clock.restart();
         rectangleShape.setPosition(550, 400);
         window.setFramerateLimit(30);
+        initTowers();
     }
     public void run()
     {
@@ -46,6 +51,10 @@ public class ClashRoyale {
     {
         mousepos = this.window.mapPixelToCoords(Mouse.getPosition(window));
         pullEvent();
+        for(AbstractTower t : towers)
+        {
+            t.tick();
+        }
             for(Entity e : entities)
             {
                 e.tick();
@@ -84,6 +93,10 @@ public class ClashRoyale {
     {
         window.clear();
         arena.render(window);
+        for(AbstractTower t : towers)
+        {
+            t.render(window);
+        }
         for(Entity e : entities)
         {
             e.render(window);
@@ -114,5 +127,16 @@ public class ClashRoyale {
     private void UpdateDt()
     {
         dt = Timer.clock.getElapsedTime().asSeconds();
+    }
+
+    private void initTowers()
+    {
+        KingTower redTower = new KingTower(KingTower.RedPosition);
+        towers.add(redTower);
+        PrincessTower princessTower1 = new PrincessTower(PrincessTower.RedPrincessTower1Pos);
+        towers.add(princessTower1);
+        PrincessTower princessTower2 = new PrincessTower(PrincessTower.RedPrincessTower2Pos);
+        towers.add(princessTower2);
+
     }
 }
