@@ -15,14 +15,15 @@ public class Arena {
     private void initializeArenaTiles()
     {
         boolean Dark=false;
-      for(int i=0;i<=18;i++)
+      for(int i=0;i<=19;i++)
       {
           tiles_arena.add(new ArrayList<Tile>());
           for(int j=0;j<=32;j++)
           {
               Tile tile = new Tile();
               tile.getShape().setSize(new Vector2f(Tile.TILE_SIZE, Tile.TILE_SIZE));
-              if(j == 0 && ((i >= 0 && i <=6) || (i>= 12 && i<= 18)))
+              //Disegna il taglio superiore
+              if(j == 0 && ((i >= 0 && i <=6) || (i>= 13 && i<= 18)))
               {
                   tile.getShape().setFillColor(Color.RED);
                   if(Dark)
@@ -34,7 +35,22 @@ public class Arena {
                       Dark = true;
                   }
               }
-              else if((j == 15 || j == 16) && ((i >= 0 && i <=2) || (i>= 4 && i<= 14) || (i >= 16 && i <= 18)))
+              //Disegna le bande laterali
+              else if ((i==0 || i==19) && (j>=0 && j <= 31))
+              {
+                  tile.getShape().setFillColor(Color.RED);
+                  if(Dark)
+                  {
+                      Dark = false;
+                  }
+                  else
+                  {
+                      Dark = true;
+                  }
+
+              }
+              //Fiume
+              else if((j == 15 || j == 16) && ((i >= 0 && i <=3) || (i>= 5 && i<= 14) || (i >= 16 && i <= 19)))
               {
                   tile.getShape().setFillColor(Color.BLUE);
                   if(Dark)
@@ -46,7 +62,8 @@ public class Arena {
                       Dark = true;
                   }
               }
-             else if(j == 32 && ((i >= 0 && i <=6) || (i>= 12 && i<= 18)))
+              //Disegna il taglio inferiore
+             else if(j == 32 && ((i >= 0 && i <=6) || (i>= 13 && i<= 18)))
               {
                   tile.getShape().setFillColor(Color.RED);
                   if(Dark)
