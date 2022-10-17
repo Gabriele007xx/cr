@@ -8,6 +8,7 @@ import java.util.ArrayList;
 
 public class Arena {
     private ArrayList<ArrayList<Tile>> tiles_arena = new ArrayList<ArrayList<Tile>>();
+    public Tile[][] tiles = new Tile[19][32];
     public Arena()
     {
         initializeArenaTiles();
@@ -20,7 +21,8 @@ public class Arena {
           tiles_arena.add(new ArrayList<Tile>());
           for(int j=0;j<=32;j++)
           {
-              Tile tile = new Tile();
+              Tile tile = new Tile(i,j);
+
               tile.getShape().setSize(new Vector2f(Tile.TILE_SIZE, Tile.TILE_SIZE));
               //Disegna il taglio superiore
               if(j == 0 && ((i >= 0 && i <=6) || (i>= 13 && i<= 18)))

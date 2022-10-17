@@ -1,5 +1,6 @@
 package entity;
 
 public enum Troops {
-    LOG
+    LOG,
+    KNIGHT
 }

@@ -1,5 +1,6 @@
 package entity;
 
+import arena.Tile;
 import core.MoveComponent;
 import org.jsfml.graphics.RenderTarget;
 import org.jsfml.graphics.Shape;
@@ -11,6 +12,7 @@ public abstract class Entity {
     protected int maxhealth;
     protected boolean dead = false;
     protected boolean LogHurted = false;
+    protected Tile start,goal,current;
     protected MoveComponent moveComponent;
     public void tick()
     {
@@ -63,6 +65,11 @@ public abstract class Entity {
         {
             dead = true;
         }
+    }
+
+    public void onSpawn()
+    {
+
     }
 
 }

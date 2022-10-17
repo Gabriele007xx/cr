@@ -3,6 +3,7 @@ package state;
 import arena.Arena;
 import core.Timer;
 import entity.Entity;
+import entity.Knight;
 import entity.Troops;
 import entity.spell.Log;
 import entity.tower.KingTower;
@@ -35,6 +36,10 @@ public class ClashRoyale {
     private RectangleShape current_elixir = new RectangleShape();
     private RectangleShape rectangleShape = new RectangleShape(new Vector2f(100,100));
     private Clock elixir_time = new Clock();
+
+    public static int clicked_tile_x;
+    public static int clicked_tile_y;
+    public static boolean isDrop = false;
 
     public static float dt;
     public ClashRoyale()
@@ -125,12 +130,22 @@ public class ClashRoyale {
     {
         if(current_troops!=null && Mouse.isButtonPressed(Mouse.Button.LEFT) && CanDrop)
         {
+
             switch(current_troops)
             {
                 case LOG:
                     Log log = new Log();
                     log.setPosition(mousepos.x, mousepos.y);
+                    isDrop = true;
                     entities.add(log);
+                    current_troops = null;
+                    CanDrop = false;
+                    break;
+                case KNIGHT:
+                    Knight knight = new Knight();
+                    knight.setPosition(mousepos.x, mousepos.y);
+                    isDrop = true;
+                    entities.add(knight);
                     current_troops = null;
                     CanDrop = false;
                     break;
