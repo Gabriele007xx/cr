@@ -1,6 +1,7 @@
 package state;
 
 import arena.Arena;
+import arena.Tile;
 import core.Timer;
 import entity.Entity;
 import entity.Knight;
@@ -23,7 +24,7 @@ public class ClashRoyale {
     private RenderWindow window;
     private int window_width = 1280;
     private int window_height = 720;
-    private Vector2f mousepos;
+    public static Vector2f mousepos;
     public Arena arena = new Arena();
     private Troops current_troops = null;
     private boolean CanDrop = false;
@@ -37,8 +38,8 @@ public class ClashRoyale {
     private RectangleShape rectangleShape = new RectangleShape(new Vector2f(100,100));
     private Clock elixir_time = new Clock();
 
-    public static int clicked_tile_x;
-    public static int clicked_tile_y;
+    public static int clicked_tile_x = 4;
+    public static int clicked_tile_y = 17;
     public static boolean isDrop = false;
 
     public static float dt;
@@ -92,6 +93,7 @@ public class ClashRoyale {
             CanDrop = true;
             mousePressed = false;
         }
+        arena.tick();
         PlaceCard();
 
         entities.removeIf(Entity::isDead);
@@ -130,12 +132,11 @@ public class ClashRoyale {
     {
         if(current_troops!=null && Mouse.isButtonPressed(Mouse.Button.LEFT) && CanDrop)
         {
-
             switch(current_troops)
             {
                 case LOG:
                     Log log = new Log();
-                    log.setPosition(mousepos.x, mousepos.y);
+                    log.setPosition(arena.tiles[clicked_tile_x][clicked_tile_y].getCenter().x,arena.tiles[clicked_tile_x][clicked_tile_y].getCenter().y);
                     isDrop = true;
                     entities.add(log);
                     current_troops = null;
@@ -145,6 +146,7 @@ public class ClashRoyale {
                     Knight knight = new Knight();
                     knight.setPosition(mousepos.x, mousepos.y);
                     isDrop = true;
+                    knight.setSpawn();
                     entities.add(knight);
                     current_troops = null;
                     CanDrop = false;

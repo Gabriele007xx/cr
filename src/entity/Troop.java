@@ -19,6 +19,8 @@ public abstract class Troop extends Entity{
     @Override
     public void tick() {
         super.tick();
+        this.findTarget();
+        this.walk();
     }
 
     @Override
@@ -40,7 +42,11 @@ public abstract class Troop extends Entity{
         startTile.col = ClashRoyale.clicked_tile_x;
         startTile.row = ClashRoyale.clicked_tile_y;
     }
-    protected void Walk()
+    protected void walk()
+    {
+
+    }
+    protected void findTarget()
     {
 
     }

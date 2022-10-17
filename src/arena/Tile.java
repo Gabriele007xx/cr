@@ -2,6 +2,7 @@ package arena;
 
 import org.jsfml.graphics.RectangleShape;
 import org.jsfml.graphics.RenderTarget;
+import org.jsfml.system.Vector2f;
 import org.jsfml.window.Mouse;
 import state.ClashRoyale;
 
@@ -43,10 +44,14 @@ public class Tile {
     }
     public void tick()
     {
-        if(Mouse.isButtonPressed(Mouse.Button.LEFT) && ClashRoyale.isDrop)
+        if(Mouse.isButtonPressed(Mouse.Button.LEFT) && ClashRoyale.isDrop && shape.getGlobalBounds().contains(ClashRoyale.mousepos))
         {
-            ClashRoyale.clicked_tile_x = col;
-            ClashRoyale.clicked_tile_y = row;
+           // ClashRoyale.clicked_tile_x = col;
+          //  ClashRoyale.clicked_tile_y = row;
         }
+    }
+    public Vector2f getCenter()
+    {
+        return new Vector2f(shape.getPosition().x + TILE_SIZE / 2f, shape.getPosition().y + TILE_SIZE / 2f);
     }
 }

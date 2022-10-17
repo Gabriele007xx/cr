@@ -3,12 +3,14 @@ package arena;
 import org.jsfml.graphics.Color;
 import org.jsfml.graphics.RenderTarget;
 import org.jsfml.system.Vector2f;
+import org.jsfml.window.Mouse;
+import state.ClashRoyale;
 
 import java.util.ArrayList;
 
 public class Arena {
     private ArrayList<ArrayList<Tile>> tiles_arena = new ArrayList<ArrayList<Tile>>();
-    public Tile[][] tiles = new Tile[19][32];
+    public Tile[][] tiles = new Tile[20][33];
     public Arena()
     {
         initializeArenaTiles();
@@ -103,6 +105,7 @@ public class Arena {
               }
               tile.getShape().setPosition(i * Tile.TILE_SIZE, j * Tile.TILE_SIZE);
               tiles_arena.get(i).add(tile);
+              tiles[i][j] = tile;
           }
       }
     }
@@ -114,6 +117,17 @@ public class Arena {
             {
                 t.render(target);
             }
+        }
+    }
+    public void tick()
+    {
+        for(ArrayList<Tile> a : tiles_arena)
+        {
+            for(Tile t : a)
+            {
+                t.tick();
+            }
+
         }
     }
 }
